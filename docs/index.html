@@ -60,8 +60,36 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-The UK Driver Vehicle License Authority makes information about vehicles available
-    to the public, after they register for an API key. This package makes interacting with this API easy.
+<div id="dvla" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#dvla" class="anchor"></a>DVLA</h1></div>
+<!-- badges: start -->
+<!-- badges: end -->
+<p>The UK Driver Vehicle License Authority makes information about vehicles available to the public, after they register for an API key. This package makes interacting with this API easy.</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install the released version of DVLA from <a href="https://github.com">Github</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"daveyr/DVLA"</span>)</pre></div>
+</div>
+<div id="example" class="section level2">
+<h2 class="hasAnchor">
+<a href="#example" class="anchor"></a>Example</h2>
+<p>This is a basic example which shows you how to solve a common problem:</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">DVLA</span>)
+<span class="no">api_key</span> <span class="kw">&lt;-</span> <span class="st">"Apply-2-the-DVLA-4-a-key"</span>
+<span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/getDVLA.html">getDVLA</a></span>(<span class="no">api_key</span>, <span class="st">"X60AMPL"</span>)</pre></div>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tribble</a></span>(
+  ~<span class="no">reg</span>, ~<span class="no">owner</span>,
+  <span class="st">"X60AMPL"</span> , <span class="st">"Alice"</span>,
+  <span class="st">"X21MPLE"</span>,  <span class="st">"Bob"</span>
+)
+
+<span class="no">df2</span> <span class="kw">&lt;-</span> <span class="no">df2</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="reference/tidyDVLA.html">tidyDVLA</a></span>(<span class="st">"reg"</span>, <span class="no">api_key</span>)</pre></div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
