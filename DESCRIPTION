@@ -1,0 +1,17 @@
+Package: DVLA
+Type: Package
+Title: Download UK vehicle data from the DVLA API
+Version: 0.0.1
+Authors@R: c(person("Richard", "Davey", email = "davey.richard@protonmail.com", role = c("aut", "cre")))
+Description: The UK Driver Vehicle License Authority makes information about vehicles available
+    to the public, after they register for an API key. This package makes interacting with this API easy.
+License: MIT + file LICENCE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    httr,
+	data.table,
+	parallel,
+	doParallel,
+	foreach
+RoxygenNote: 7.1.0
