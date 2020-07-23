@@ -11,6 +11,10 @@ The UK Driver Vehicle License Authority makes information about vehicles
 available to the public, after they register for an API key. This
 package makes interacting with this API easy.
 
+Data types and examples provided by the API are below
+
+<img src="man/figures/README-data-1.png" width="100%" />
+
 ## Prerequisites
 
 In addition to this package, you must apply for and be granted an API
