@@ -66,19 +66,26 @@
 <!-- badges: start -->
 <!-- badges: end -->
 <p>The UK Driver Vehicle License Authority makes information about vehicles available to the public, after they register for an API key. This package makes interacting with this API easy.</p>
+<div id="prerequisites" class="section level2">
+<h2 class="hasAnchor">
+<a href="#prerequisites" class="anchor"></a>Prerequisites</h2>
+<p>In addition to this package, you must apply for and be granted an API key from the UK Driver Vehicle Licensing Authority. You can do so <a href="https://developer-portal.driver-vehicle-licensing.api.gov.uk/apis/vehicle-enquiry-service/Register-For-VES-API.html">here</a>.</p>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of DVLA from <a href="https://github.com">Github</a> with:</p>
+<p>You can install the released version of DVLA from <a href="https://github.com/Daveyr/DVLA">Github</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"daveyr/DVLA"</span>)</pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="examples" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<a href="#examples" class="anchor"></a>Examples</h2>
+<p>To retrieve data for a single vehicle, use <code>getDVLA</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">DVLA</span>)
 <span class="no">api_key</span> <span class="kw">&lt;-</span> <span class="st">"Apply-2-the-DVLA-4-a-key"</span>
 <span class="no">df1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/getDVLA.html">getDVLA</a></span>(<span class="no">api_key</span>, <span class="st">"X60AMPL"</span>)</pre></div>
+<p>To retrieve data for many vehicles, use <code>tidyDVLA</code>. As the name suggests, <code>tidyDVLA</code> is compatible with the pipe work flow common to the tidyverse, where a data frame is the first argument to any function, and its sole output.</p>
+<p>The result is a data frame containing the input and vehicle data from the DVLA in additional columns. The data are tidy: one vehicle per row and one feature per column.</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
 <span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tribble</a></span>(
   ~<span class="no">reg</span>, ~<span class="no">owner</span>,
@@ -88,6 +95,22 @@
 
 <span class="no">df2</span> <span class="kw">&lt;-</span> <span class="no">df2</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="reference/tidyDVLA.html">tidyDVLA</a></span>(<span class="st">"reg"</span>, <span class="no">api_key</span>)</pre></div>
+</div>
+<div id="misc" class="section level2">
+<h2 class="hasAnchor">
+<a href="#misc" class="anchor"></a>Misc</h2>
+<p>To understand more about how the API works, refer to the <a href="https://developer-portal.driver-vehicle-licensing.api.gov.uk/apis/vehicle-enquiry-service/vehicle-enquiry-service-description.html#vehicle-enquiry-service-api">Vehicle Enquiry Service API documentation</a>.</p>
+<p>To summarise, the package works as follows:</p>
+<ul>
+<li>Issue an HTTP POST request using the <code>httr</code> library with the following
+<ul>
+<li>A header containing <code>x-api-key</code> and the key value</li>
+<li>A body containing <code>registrationNumber</code> and the vehicle registration string</li>
+</ul>
+</li>
+<li>Receive a response in json format</li>
+<li>Convert the json response into a data frame</li>
+</ul>
 </div>
 </div>
   </div>

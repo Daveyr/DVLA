@@ -21,9 +21,12 @@ knitr::opts_chunk$set(
 
 The UK Driver Vehicle License Authority makes information about vehicles available to the public, after they register for an API key. This package makes interacting with this API easy.
 
+## Prerequisites
+In addition to this package, you must apply for and be granted an API key from the UK Driver Vehicle Licensing Authority. You can do so [here](https://developer-portal.driver-vehicle-licensing.api.gov.uk/apis/vehicle-enquiry-service/Register-For-VES-API.html).
+
 ## Installation
 
-You can install the released version of DVLA from [Github](https://github.com) with:
+You can install the released version of DVLA from [Github](https://github.com/Daveyr/DVLA) with:
 
 ``` r
 devtools::install_github("daveyr/DVLA")
@@ -56,3 +59,15 @@ df2 <- df2 %>%
   tidyDVLA("reg", api_key)
 
 ```
+
+## Misc
+To understand more about how the API works, refer to the [Vehicle Enquiry Service API documentation](https://developer-portal.driver-vehicle-licensing.api.gov.uk/apis/vehicle-enquiry-service/vehicle-enquiry-service-description.html#vehicle-enquiry-service-api). 
+
+To summarise, the package works as follows:
+
+* Issue an HTTP POST request using the `httr` library with the following
+  + A header containing `x-api-key` and the key value
+  + A body containing `registrationNumber` and the vehicle registration string
+* Receive a response in json format
+* Convert the json response into a data frame
+
