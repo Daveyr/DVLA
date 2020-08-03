@@ -29,6 +29,8 @@ You can install the released version of DVLA from
 ``` r
 devtools::install_github("daveyr/DVLA")
 ```
+## News
+v0.0.2 parallelised code removed from `tidyDVLA`. The code was too fast and hit an API rate limit. Warnings were silent. Function is now slower but more reliable; dependencies are fewer.
 
 ## Examples
 
